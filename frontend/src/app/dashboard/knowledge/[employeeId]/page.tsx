@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
+
 import Link from "next/link";
 import { api } from "@/lib/api-client";
 import { statusColor } from "@/lib/utils";
@@ -26,23 +26,15 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 export default function KnowledgeBasePage() {
   const { employeeId } = useParams<{ employeeId: string }>();
-  const { user } = useUser();
   const [kb, setKb] = useState<KnowledgeBase | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [expandedEntry, setExpandedEntry] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState("Dashboard coming soon.");
 
   useEffect(() => {
-    if (user?.id && employeeId) {
-      api.setUserId(user.id);
-      api
-        .getKnowledgeBase(employeeId)
-        .then(setKb)
-        .catch(() => setError("Knowledge base not found. Run synthesis first."))
-        .finally(() => setLoading(false));
-    }
-  }, [user, employeeId]);
+    setLoading(false);
+  }, []);
 
   if (loading) return <div className="text-gray-500">Loading knowledge base...</div>;
   if (error) return (

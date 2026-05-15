@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
+
 import { api } from "@/lib/api-client";
 import { statusColor, formatDate } from "@/lib/utils";
 import type { Employee, InterviewSession } from "@/types";
@@ -18,18 +18,14 @@ const TOPICS = [
 
 export default function EmployeeDetailPage() {
   const { employeeId } = useParams<{ employeeId: string }>();
-  const { user } = useUser();
   const [employee, setEmployee] = useState<Employee | null>(null);
   const [sessions, setSessions] = useState<InterviewSession[]>([]);
   const [loading, setLoading] = useState(true);
   const [synthesizing, setSynthesizing] = useState(false);
 
   useEffect(() => {
-    if (user?.id && employeeId) {
-      api.setUserId(user.id);
-      loadData();
-    }
-  }, [user, employeeId]);
+    setLoading(false);
+  }, []);
 
   async function loadData() {
     try {

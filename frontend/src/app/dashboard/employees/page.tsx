@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
+
 import { api } from "@/lib/api-client";
 import { statusColor, formatDate } from "@/lib/utils";
 import type { Employee } from "@/types";
 
 export default function EmployeesPage() {
-  const { user } = useUser();
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -23,11 +22,8 @@ export default function EmployeesPage() {
   });
 
   useEffect(() => {
-    if (user?.id) {
-      api.setUserId(user.id);
-      loadEmployees();
-    }
-  }, [user]);
+    setLoading(false);
+  }, []);
 
   async function loadEmployees() {
     try {

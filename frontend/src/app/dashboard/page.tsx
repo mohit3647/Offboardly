@@ -2,26 +2,18 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
+
 import { api } from "@/lib/api-client";
 import { statusColor, formatDate } from "@/lib/utils";
 import type { Employee } from "@/types";
 
 export default function DashboardPage() {
-  const { user } = useUser();
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user?.id) {
-      api.setUserId(user.id);
-      api
-        .listEmployees()
-        .then(setEmployees)
-        .catch(() => {})
-        .finally(() => setLoading(false));
-    }
-  }, [user]);
+    setLoading(false);
+  }, []);
 
   const stats = {
     total: employees.length,

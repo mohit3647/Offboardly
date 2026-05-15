@@ -1,11 +1,10 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Offboardly — Capture Institutional Knowledge",
+  title: "Offboardly — Your Company's Brain, Preserved Forever",
   description:
-    "AI-powered agent that captures institutional knowledge from offboarding employees before it walks out the door.",
+    "AI-powered knowledge capture for offboarding employees. Stop losing institutional knowledge. 42% of critical knowledge walks out the door — Offboardly captures it before it's gone.",
 };
 
 export default function RootLayout({
@@ -14,12 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className="min-h-screen bg-gray-50 text-gray-900 antialiased">
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className="min-h-screen antialiased">{children}</body>
+    </html>
   );
 }

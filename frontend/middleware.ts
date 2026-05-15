@@ -1,9 +1,7 @@
-import { authMiddleware } from "@clerk/nextjs";
-
-export default authMiddleware({
-  publicRoutes: ["/", "/sign-in(.*)", "/sign-up(.*)"],
-});
+// Clerk auth middleware disabled for landing page deployment.
+// Re-enable when the full dashboard is ready.
+export default function middleware() {}
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
-};
+  matcher: [],
+}

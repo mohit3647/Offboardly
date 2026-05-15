@@ -1,6 +1,8 @@
 "use client";
 
-import { UserButton } from "@clerk/nextjs";
+export const dynamic = "force-dynamic";
+
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -72,7 +74,7 @@ export default function DashboardLayout({
           })}
         </nav>
         <div className="border-t p-4">
-          <UserButton afterSignOutUrl="/" />
+          <span className="text-xs text-gray-400">v0.1</span>
         </div>
       </aside>
 
