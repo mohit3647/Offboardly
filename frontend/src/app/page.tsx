@@ -11,9 +11,35 @@ import {
 import { NeuralBackground } from '@/components/NeuralBackground'
 import { WaitlistForm } from '@/components/WaitlistForm'
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Offboardly AI",
+  url: "https://offboardlyai.com",
+  description:
+    "AI-powered institutional knowledge capture for offboarding employees. Captures tribal knowledge, workflows, and decision patterns before they walk out the door.",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "299",
+    priceCurrency: "USD",
+    description: "Per offboarding",
+  },
+  creator: {
+    "@type": "Organization",
+    name: "Offboardly AI",
+    url: "https://offboardlyai.com",
+  },
+}
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#05050f] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* ─── NAVBAR ─── */}
       <nav className="fixed top-0 z-50 w-full border-b border-white/5 bg-[#05050f]/80 backdrop-blur-xl">
